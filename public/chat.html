@@ -5,11 +5,12 @@
     <title>NeighbourNet</title>
     <link rel="icon" href="/img/favicon.png">
     <link rel="stylesheet" href="/css/styles.min.css">
+    
 </head>
 
 <body>
     <div class="chat">
-        <div id="sidebar" class="chat__sidebar">
+        <div id="sidebar" class="chat__sidebar" style="position: relative;">
 
         </div>
         <div class="chat__main">
@@ -20,7 +21,7 @@
                     <input name="message" placeholder="Message" required autocomplete="off">
                     <button>Send</button>
                 </form>
-                <button id="send-location">Suggest Portfolio</button>
+                <!-- <button id="send-location">Suggest Portfolio</button> -->
             </div>
         </div>
     </div>
@@ -35,7 +36,7 @@
             </div>
         </script>
 
-    <script id="location-message-template" type="text/html">
+    <!-- <script id="location-message-template" type="text/html">
             <div class="message">
                 <p>
                     <span class="message__name">{{username}}</span>
@@ -43,16 +44,19 @@
                 </p>
                 <p><a href="{{url}}" target="_blank">My current location</a></p>
             </div>
-        </script>
+        </script> -->
 
     <script id="sidebar-template" type="text/html">
-        <h2 class="room-title">{{room}}</h2>
-        <h3 class="list-title">Users</h3>
-        <ul class="users">
-            {{#users}}
-                <li>{{username}}</li>
-            {{/users}}
-        </ul>
+        <div style="background-color: #000000;display: flex;align-items: center;">
+            <img src="img/favicon.png" width="60" height="60">
+            <span style="color:#ffffff;font-weight: bold;margin-left: .5rem;">NeighbourNet</span>
+        </div>
+        <button class="list-title">Download Questionnaire Here</button>
+        <label class="btn-bs-file btn btn-lg btn-primary">
+            <input type="file" style="margin-top:1rem;height: 400px;"/>
+
+        </label>
+        <button style="position:absolute;bottom: 0;width: 100%;">Upload</button>
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
