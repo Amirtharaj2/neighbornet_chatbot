@@ -1,7 +1,10 @@
+// const level = require('level')
+// const db = level('my-db')
 const users = []
 
-const addUser = ({ id, username, room }) => {
+const addUser = ({ username, room }) => {
 
+    const user = {username, room}
 
     // Validate the data
     if (!username || !room) {
@@ -10,43 +13,46 @@ const addUser = ({ id, username, room }) => {
         }
     }
 
-    // Check for existing user
+    // Check for existing user - ROOM
     const existingUser = users.find((user) => {
-        return user.room === room && user.username === username
+        return user.room === room && user.username !== username
     })
 
+    
     // Validate username
     if (existingUser) {
-        return {
-            error: 'Username is in use!'
-        }
-    }
+        
+    return {error: "User name is incorrect / E-Mail already exists"}
+} 
 
-    // Store user
-    const user = { id, username, room }
+// Existing User Credentials
+    const existingUser1 = users.find((user) => {
+    return user.room === room && user.username === username
+})
+
+
+// Validate username
+if (!existingUser1) {
     users.push(user)
+    console.log (users)
+    return { user }
+}
+    console.log (users)
     return { user }
 }
 
-const removeUser = (id) => {
-    const index = users.findIndex((user) => user.id === id)
+    
 
-    if (index !== -1) {
-        return users.splice(index, 1)[0]
-    }
-}
-
-const getUser = (id) => {
-    return users.find((user) => user.id === id)
+const getUser = (room) => {
+    return users.find((user) => user.room === room)
 }
 
 const getUsersInRoom = (room) => {
     return users.filter((user) => user.room === room)
+   
 }
-
 module.exports = {
     addUser,
-    removeUser,
     getUser,
     getUsersInRoom
 }
